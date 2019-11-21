@@ -1,27 +1,45 @@
 package com.example.HajratBackend.Module;
 
-import java.util.UUID;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "worksite")
 public class WorkSite {
 
-    UUID id;
-    String name;
-    String Description;
-    String imageUrl;
-    Location Location;
+    @SequenceGenerator(name="seq", initialValue=1000, allocationSize=10)
 
-    public WorkSite(UUID id, String name, String description, Location location) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    private Long id;
+
+    @Column(name = "name")
+    @NotNull
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "location_id")
+    @NotNull
+    private Location location;
+
+    public WorkSite(Long id, String name, String description,String imageUrl, Location location) {
         this.id = id;
         this.name = name;
-        Description = description;
-        Location = location;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.location = location;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,19 +52,27 @@ public class WorkSite {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public Location getLocation() {
-        return Location;
+        return location;
     }
 
     public void setLocation(Location location) {
-        Location = location;
+        this.location = location;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
 

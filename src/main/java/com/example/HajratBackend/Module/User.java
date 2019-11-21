@@ -1,9 +1,12 @@
 package com.example.HajratBackend.Module;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 
-
+@Entity
+@Table(name = "users")
 public class User {
 
     public enum UserType {
@@ -11,23 +14,41 @@ public class User {
         WORKER
     }
 
-    UUID id;
-    String name;
-    UserType userType;
-    String phoneNumber;
+    @SequenceGenerator(name="seq", initialValue=1000, allocationSize=10)
 
-    public User(UUID id, String name, UserType userType, String phoneNumber) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    private Long id;
+
+    @Column(name = "name")
+    @NotNull
+    private String name;
+
+    @Column(name = "type")
+    @NotNull
+    private UserType userType;
+
+    @Column(name = "phone_no")
+    @NotNull
+    private String phoneNumber;
+
+    @Column(name = "password")
+    @NotNull
+    private String password;
+
+    public User(Long id, String name, UserType userType, String phoneNumber, String password) {
         this.id = id;
         this.name = name;
         this.userType = userType;
         this.phoneNumber = phoneNumber;
+        this.password = password;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,5 +74,13 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

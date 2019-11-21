@@ -1,9 +1,9 @@
-package com.example.HajratBackend.Module;
+package com.example.HajratBackend.Module.Request;
 
 public class AddUserRequest {
 
-    String name;
-    String phoneNo;
+    private String name;
+    private String phoneNo;
 
     public String getName() {
         return name;

@@ -1,13 +1,13 @@
-package com.example.HajratBackend.Module;
+package com.example.HajratBackend.Module.Request;
 
-public class AddWorkSiteRequeat {
+public class AddWorkSiteRequest {
 
-    String name;
-    String Description;
-    Double longitude;
-    String address;
-    Double latitude;
-    String imageUrl;
+    private String name;
+    private String Description;
+    private Double longitude;
+    private String address;
+    private Double latitude;
+    private String imageUrl;
 
     public String getName() {
         return name;
@@ -57,7 +57,7 @@ public class AddWorkSiteRequeat {
         this.imageUrl = imageUrl;
     }
 
-    public AddWorkSiteRequeat(String name, String description, Double longitude, String address, Double latitude, String imageUrl) {
+    public AddWorkSiteRequest(String name, String description, Double longitude, String address, Double latitude, String imageUrl) {
         this.name = name;
         Description = description;
         this.longitude = longitude;
