@@ -37,11 +37,7 @@ public class Requirement {
     @NotNull
     private ReqStatus.Status status;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id")
-    private Location location;
-
-    public Requirement(Long id, String description, String imageUrl, String audioUrl, Timestamp creationTimeStamp, Timestamp completionTimeStamp, ReqStatus.Status status, Location location) {
+    public Requirement(Long id, String description, String imageUrl, String audioUrl, Timestamp creationTimeStamp, Timestamp completionTimeStamp, ReqStatus.Status status) {
         this.id = id;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -49,7 +45,6 @@ public class Requirement {
         this.creationTimeStamp = creationTimeStamp;
         this.completionTimeStamp = completionTimeStamp;
         this.status = status;
-        this.location = location;
     }
 
     public Long getId() {
@@ -108,12 +103,5 @@ public class Requirement {
         this.status = status;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
 }

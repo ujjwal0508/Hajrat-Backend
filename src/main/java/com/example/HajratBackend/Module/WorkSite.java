@@ -23,8 +23,8 @@ public class WorkSite {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "location_id")
-    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id")
     private Location location;
 
     public WorkSite(Long id, String name, String description,String imageUrl, Location location) {

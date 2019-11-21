@@ -18,8 +18,7 @@ public class WorkStatusImage {
     private String imageUrl;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "work_status", nullable = false)
-    @Column(name = "work_status_id")
+    @JoinColumn(name = "work_status_id", nullable = false)
     private WorkStatus workStatus;
 
     public WorkStatusImage(Long id, String imageUrl, WorkStatus workStatus) {
