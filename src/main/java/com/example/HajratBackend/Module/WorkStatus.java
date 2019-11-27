@@ -8,10 +8,8 @@ import java.sql.Timestamp;
 @Table(name = "work_status")
 public class WorkStatus {
 
-    @SequenceGenerator(name="seq", initialValue=1000, allocationSize=10)
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "description")
@@ -25,6 +23,9 @@ public class WorkStatus {
     @Column(name = "creation_timestamp")
     @NotNull
     private Timestamp creationTimestamp;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "workStatus")
+    private WorkStatusImage workStatusImage;
 
     public WorkStatus(Long id, String description, String audioUrl, Timestamp creationTimestamp) {
         this.id = id;

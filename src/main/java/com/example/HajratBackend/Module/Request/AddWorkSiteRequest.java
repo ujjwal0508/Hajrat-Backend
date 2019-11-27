@@ -3,7 +3,7 @@ package com.example.HajratBackend.Module.Request;
 public class AddWorkSiteRequest {
 
     private String name;
-    private String Description;
+    private String description;
     private Double longitude;
     private String address;
     private Double latitude;
@@ -18,11 +18,11 @@ public class AddWorkSiteRequest {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public Double getLongitude() {
@@ -59,7 +59,7 @@ public class AddWorkSiteRequest {
 
     public AddWorkSiteRequest(String name, String description, Double longitude, String address, Double latitude, String imageUrl) {
         this.name = name;
-        Description = description;
+        this.description = description;
         this.longitude = longitude;
         this.address = address;
         this.latitude = latitude;

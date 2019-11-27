@@ -1,5 +1,7 @@
 package com.example.HajratBackend.Module;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -17,14 +19,15 @@ public class WorkStatusImage {
     @NotNull
     private String imageUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "work_status_id", nullable = false)
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "work_status_id", nullable = false, unique = true)
     private WorkStatus workStatus;
 
     public WorkStatusImage(Long id, String imageUrl, WorkStatus workStatus) {
         this.id = id;
         this.imageUrl = imageUrl;
-        this.workStatus = workStatus;
+//        this.workStatus = workStatus;
     }
 
     public Long getId() {
@@ -42,12 +45,12 @@ public class WorkStatusImage {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    public WorkStatus getWorkStatus() {
-        return workStatus;
-    }
-
-    public void setWorkStatus(WorkStatus workStatus) {
-        this.workStatus = workStatus;
-    }
+//
+//    public WorkStatus getWorkStatus() {
+//        return workStatus;
+//    }
+//
+//    public void setWorkStatus(WorkStatus workStatus) {
+//        this.workStatus = workStatus;
+//    }
 }

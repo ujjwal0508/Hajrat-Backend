@@ -1,16 +1,19 @@
 package com.example.HajratBackend.Module;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Entity
+
 @Table(name = "worksite")
 public class WorkSite {
 
-    @SequenceGenerator(name="seq", initialValue=1000, allocationSize=10)
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -23,16 +26,17 @@ public class WorkSite {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "workSite")
     private Location location;
 
-    public WorkSite(Long id, String name, String description,String imageUrl, Location location) {
-        this.id = id;
+    public WorkSite(){
+
+    }
+
+    public WorkSite(String name, String description,String imageUrl) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.location = location;
     }
 
     public Long getId() {

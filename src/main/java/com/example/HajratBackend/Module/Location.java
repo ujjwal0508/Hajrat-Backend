@@ -1,16 +1,21 @@
 package com.example.HajratBackend.Module;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Entity
 @Table(name = "location")
+
 public class Location{
 
-    @SequenceGenerator(name="seq", initialValue=1000, allocationSize=10)
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+//    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "longitude")
@@ -23,14 +28,19 @@ public class Location{
     @Column(name = "latitude")
     private Double latitude;
 
-    @OneToOne(mappedBy = "location")
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "worksite_id", nullable = false, unique = true)
     private WorkSite workSite;
 
-    public Location(Long id, Double longitude, String address, Double latitude) {
-        this.id = id;
-        this.longitude = longitude;
+    public Location(){
+
+    }
+
+    public Location( String address, Double latitude, Double longitude) {
         this.address = address;
         this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Location(Long id, String address) {
@@ -69,6 +79,14 @@ public class Location{
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public WorkSite getWorkSite() {
+        return workSite;
+    }
+
+    public void setWorkSite(WorkSite workSite) {
+        this.workSite = workSite;
     }
 
 

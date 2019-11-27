@@ -14,7 +14,7 @@ public class Requirement {
     @SequenceGenerator(name="seq", initialValue=1000, allocationSize=10)
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "description")
